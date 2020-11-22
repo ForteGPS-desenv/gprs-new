@@ -1,0 +1,68 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap";
+
+:root {
+    --color-primary: #7159c1;
+    --color-secondary: #50fa7b;
+    --color-tertiary: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--color-primary);
+
+}
+
+header {
+    color: #111111;
+    border-bottom: 1px solid #333;
+    width: 100%;
+    padding: 32px;
+    background: var(--color-tertiary);
+}
+
+.links {
+    text-align: center;
+    font-size: 22px;
+}
+
+.links a + a {
+    font-size: 28px;
+    margin:0 32px;
+}
+
+.links a {
+    color: #777;
+    line-height: 28px;
+    padding-bottom: 3px;
+    text-decoration: none;
+    position: relative;
+}
+
+.links a.active {
+    font-weight: bold;
+    color: var(--color-primary)
+}
+
+.links a:hover {
+    color: var(--color-primary);
+    transition: color 350ms;
+}
+
+.links a:hover::after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+}
+
