@@ -1,9 +1,11 @@
 @import "https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap";
 
 :root {
-    --color-primary: #7159c1;
-    --color-secondary: #50fa7b;
-    --color-tertiary: #ffffff;
+    --color-primary: #D9183B;
+    --color-primary-dark: #F21D56;
+    --color-primary-light: #F27E9D;
+    --color-secondary: #024059;
+    --color-neutral: #ffffff;
 }
 
 * {
@@ -25,7 +27,7 @@ header {
     border-bottom: 1px solid #333;
     width: 100%;
     padding: 32px;
-    background: var(--color-tertiary);
+    background: var(--color-neutral);
 }
 
 .links {
@@ -56,13 +58,18 @@ header {
     transition: color 350ms;
 }
 
-.links a:hover::after {
+.links a::after {
     content: '';
-    width: 100%;
+    width: 0;
     height: 2px;
     background: var(--color-primary);
     position: absolute;
     left: 0;
     bottom: -4px;
+}
+
+.links a:hover::after {
+    width: 100%;
+    transition: all 1s ease-in-out;
 }
 

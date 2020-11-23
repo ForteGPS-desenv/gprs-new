@@ -10,7 +10,7 @@ router.get('/members', function (req, res) {
 })
 
 router.get('/chips', function (req, res) {
-    return res.send("Lista de chips")
+    return res.send("Chip list")
 })
 
 module.exports = router
