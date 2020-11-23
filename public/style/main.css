@@ -73,3 +73,14 @@ header {
     transition: all 1s ease-in-out;
 }
 
+/* => CARD <=*/
+.card {
+    background-color: white;
+    width: 800px;
+    height: 400px;
+
+    margin: 45px auto;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
