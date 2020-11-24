@@ -9,10 +9,24 @@ exports.post = function(req, res) {
             return res.send('Eiiiii! Não foi preenchido todos os campos')
         }
     }
-    req.body.active = Date.parse(req.body.active)
-    req.body.created_at = Date.now()
 
-    data.members.push(req.body)
+    let { avatar_url, name, active, services } = req.body
+
+
+    active = Date.parse(active)
+    const created_at = Date.now()
+    const id = Number(data.members.length + 1)
+
+
+    data.members.push({
+        id,
+        avatar_url,
+        active,
+        name,
+        created_at,
+        services
+    })
+    
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
         if (err) return res.send("Write file error!!")
         
