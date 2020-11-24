@@ -1,0 +1,48 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<form class="card" method="POST" action="/members">
+    <section class="avatar"></section>
+    <section class="details">
+        <h3> Detalhes </h3>
+        <div class="item">
+            <div>Avatar URL</div>
+            <div>
+                <input 
+                    type="url"
+                    name="avatar_url"
+                    placeholder="http://">
+            </div>
+        </div>
+        <div class="item">
+            <div>Membro</div>
+            <div>
+                <input 
+                    type="text"
+                    name="name"
+                    placeholder="Nome do membro">
+            </div>
+        </div>
+        <div class="item">
+            <div>Data de ativação</div>
+            <div>
+                <input 
+                    type="date"
+                    name="active">
+            </div>
+        </div>
+        <div class="item">
+            <div>Responsavel</div>
+            <div>
+                <input 
+                    type="text"
+                    name="services"
+                    placeholder="Digite os responsaveis">
+            </div>
+        </div>
+        <button type="submit">Salvar</button>
+    </section>
+</form>
+
+{% endblock content%}
