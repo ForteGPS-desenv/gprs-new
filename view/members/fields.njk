@@ -1,0 +1,41 @@
+<div class="item">
+            <div>Avatar URL</div>
+            <div>
+                <input 
+                    type="url"
+                    name="avatar_url"
+                    placeholder="http://"
+                    value="{{member.avatar_url}}"
+                    >
+            </div>
+        </div>
+        <div class="item">
+            <div>Membro</div>
+            <div>
+                <input 
+                    type="text"
+                    name="name"
+                    placeholder="Nome do membro"
+                    value="{{member.name}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>Data de ativação</div>
+            <div>
+                <input 
+                    type="date"
+                    name="active"
+                    value="{{member.active}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>Responsavel</div>
+            <div>
+                <input 
+                    type="text"
+                    name="services"
+                    placeholder="Separe os responsaveis por vígula"
+                    value="{{member.services}}">
+            </div>
+        </div>
+        <button type="submit">Salvar</button>

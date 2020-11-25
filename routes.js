@@ -16,6 +16,8 @@ router.get('/members/create', function(req, res){
 
 router.get('/members/:id', members.show)
 
+router.get('/members/:id/edit', members.edit)
+
 router.post('/members', members.post)
 
 router.get('/chips', function (req, res) {

@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('../data.json')
-const { active } = require('./utils')
+const { active, date } = require('./utils')
 
 //show
 exports.show =  function(req, res) {
@@ -57,5 +57,18 @@ exports.post = function(req, res) {
     })
 }
 //Update
+exports.edit = function(req, res){
+//req.params
+const { id } = req.params 
 
+const foundMember = data.members.find(function(member){
+    return member.id == id
+})
+
+if(!foundMember) return res.send("Member not found")
+
+    date(foundMember.active)
+
+    return res.render('members/edit', {member: foundMember})
+}
 //Delete
