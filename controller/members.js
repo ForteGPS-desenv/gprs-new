@@ -1,5 +1,28 @@
 const fs = require('fs')
 const data = require('../data.json')
+const { active } = require('./utils')
+
+//show
+exports.show =  function(req, res) {
+    //req.params
+    const { id } = req.params 
+
+    const foundMember = data.members.find(function(member){
+        return member.id == id
+    })
+
+    if(!foundMember) return res.send("Member not found")
+
+    const member = {
+        ...foundMember,
+        active: active(foundMember.active),
+        services:foundMember.services.split(","),
+        created_at: new Intl.DateTimeFormat("pt-BR").format(foundMember.created_at)
+    }
+
+    return res.render("members/show", {member})
+}
+
 
 //Create
 exports.post = function(req, res) {

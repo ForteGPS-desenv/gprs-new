@@ -14,6 +14,8 @@ router.get('/members/create', function(req, res){
     return res.render('members/create')
 })
 
+router.get('/members/:id', members.show)
+
 router.post('/members', members.post)
 
 router.get('/chips', function (req, res) {

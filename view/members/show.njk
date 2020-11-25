@@ -8,25 +8,28 @@
         <h3> Detalhes </h3>
         <div class="item">
             <div>Membro</div>
-            <div>Grupo de parceria de Rastreamento e Serviços</div>
+            <div>{{member.name}}</div>
         </div>
         <div class="item">
-            <div>Data de ativação</div>
-            <div>14/11/2020</div>
+            <div>Tempo de ativação</div>
+            <div>{{member.active}}</div>
         </div>
         <div class="item">
             <div>Responsavel</div>
             <div>
-                <span>Apolinario</span>
-                <span>Tales</span>
+                {% for service in member.services %}
+                    <span>{{service}}</span>
+                {% endfor %}
+                
             </div>
         </div>
         <div class="item">
             <div>Total de chip</div>
             <div>20</div>
-            <div>Total a pagar</div>
-            <div>100</div>
+            <div>Desde</div>
+            <div>{{member.created_at}}</div>
         </div>
+        <a href="#" class="button">Editar</a>
     </section>
 </div>
 
