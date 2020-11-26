@@ -22,8 +22,6 @@ exports.show =  function(req, res) {
 
     return res.render("members/show", {member})
 }
-
-
 //Create
 exports.post = function(req, res) {
     const keys = Object.keys(req.body)
@@ -56,9 +54,8 @@ exports.post = function(req, res) {
         return res.redirect("/members")
     })
 }
-//Update
+//Edit
 exports.edit = function(req, res){
-//req.params
 const { id } = req.params 
 
 const foundMember = data.members.find(function(member){
@@ -67,8 +64,40 @@ const foundMember = data.members.find(function(member){
 
 if(!foundMember) return res.send("Member not found")
 
-    date(foundMember.active)
+const member = {
+    ...foundMember,
+    active: date(foundMember.active)
+}
+    return res.render('members/edit', {member})
+}
 
-    return res.render('members/edit', {member: foundMember})
+//Put
+
+exports.put = function(req, res) {
+    const { id } = req.body 
+    let index = 0
+    
+    const foundMember = data.members.find(function(member, foundIndex){
+        if ( id == member.id) {
+            index = foundIndex
+            return true
+        }
+    })
+
+    if(!foundMember) return res.send("Member not found")
+
+    const member = {
+        ...foundMember,
+        ...req.body,
+        active: Date.parse(req.body.active)
+    }
+
+    data.members[index] = member
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
+        if(err) return res.send("Write error!!!")
+
+        return res.redirect(`/instructors${id}`)
+    })
 }
 //Delete
