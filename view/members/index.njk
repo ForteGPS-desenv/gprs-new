@@ -2,34 +2,27 @@
 
 {% block content %}
 
-<div class="card">
-    <section 
-        class="avatar" 
-        style="background: url(../assets/{{member.name}}.jpg) no-repeat center center; background-size: cover;"
-    ></section>    <section class="details">
-        <h3> Detalhes </h3>
-        <div class="item">
-            <div>Membro</div>
-            <div>Grupo de parceria de Rastreamento e Serviços</div>
-        </div>
-        <div class="item">
-            <div>Data de ativação</div>
-            <div>14/11/2020</div>
-        </div>
-        <div class="item">
-            <div>Responsavel</div>
-            <div>
-                <span>Apolinario</span>
-                <span>Tales</span>
-            </div>
-        </div>
-        <div class="item">
-            <div>Total de chip</div>
-            <div>20</div>
-            <div>Total a pagar</div>
-            <div>100</div>
-        </div>
-    </section>
+<div class="card table-container">
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>Razao social</th>
+                <th>Responsaveis</th>
+                <th>Ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for member in members%}
+            <tr>
+                <td>
+                    <span style="background: url(../assets/{{member.name}}.jpg)"></span>
+                {{member.name}}</td>
+                <td>{{member.services}}</td>
+                <td><a href="/members/{{member.id}}">Ver</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 {% endblock content%}

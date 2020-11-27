@@ -2,6 +2,10 @@ const fs = require('fs')
 const data = require('../data.json')
 const { active, date } = require('./utils')
 
+exports.index = function(req, res) {
+    return res.render("members/index", { members: data.members })
+}
+
 //show
 exports.show =  function(req, res) {
     //req.params
@@ -56,23 +60,22 @@ exports.post = function(req, res) {
 }
 //Edit
 exports.edit = function(req, res){
-const { id } = req.params 
 
-const foundMember = data.members.find(function(member){
-    return member.id == id
-})
+    const { id } = req.params 
 
-if(!foundMember) return res.send("Member not found")
+    const foundMember = data.members.find(function(member){
+        return member.id == id
+    })
 
-const member = {
-    ...foundMember,
-    active: date(foundMember.active)
-}
+    if(!foundMember) return res.send("Member not found")
+
+    const member = {
+        ...foundMember,
+        active: date(foundMember.active)
+    }
     return res.render('members/edit', {member})
 }
-
 //Put
-
 exports.put = function(req, res) {
     const { id } = req.body 
     let index = 0
@@ -89,7 +92,8 @@ exports.put = function(req, res) {
     const member = {
         ...foundMember,
         ...req.body,
-        active: Date.parse(req.body.active)
+        active: Date.parse(req.body.active),
+        id: Number(req.body.id)
     }
 
     data.members[index] = member
@@ -97,7 +101,22 @@ exports.put = function(req, res) {
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
         if(err) return res.send("Write error!!!")
 
-        return res.redirect(`/instructors${id}`)
+        return res.redirect(`/members/${id}`)
     })
 }
 //Delete
+exports.delete = function(req, res){
+    const { id } = req.body
+
+    const filteredMembers = data.members.filter(function(member){
+        return member.id != id
+    })
+
+    data.members = filteredMembers
+
+    fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
+        if (err) return res.send("Write file error!")
+
+        return res.redirect("/members")
+    })
+}
