@@ -3,11 +3,12 @@
 {% block content %}
 
 <div class="card table-container">
+    <a href="/members/create">Novo</a>
     <table width="100%">
         <thead>
             <tr>
-                <th>Razao social</th>
-                <th>Responsaveis</th>
+                <th>Logo</th>
+                <th>Razão Social</th>
                 <th>Ação</th>
             </tr>
         </thead>
@@ -15,9 +16,14 @@
             {% for member in members%}
             <tr>
                 <td>
-                    <span style="background: url(../assets/{{member.name}}.jpg)"></span>
-                {{member.name}}</td>
-                <td>{{member.services}}</td>
+                    <span class="avatar-member" 
+                        style="background: url(../assets/{{member.name}}.jpg);
+                        background-size: cover;
+                        width: 80px;
+                        height: 80px;
+                    "></span>
+                </td>
+                <td>{{member.name}}</td>
                 <td><a href="/members/{{member.id}}">Ver</a></td>
             </tr>
             {% endfor %}

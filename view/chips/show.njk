@@ -1,0 +1,39 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<div class="card">
+  <section 
+        class="avatar" 
+        style="background: url(../assets/{{chip.name}}.jpg) no-repeat center center; background-size: cover;"
+    ></section>
+    <section class="details">
+        <h3> Detalhes </h3>
+        <div class="item">
+            <div>Membro</div>
+            <div>{{chip.name}}</div>
+        </div>
+        <div class="item">
+            <div>Tempo de ativação</div>
+            <div>{{chip.active}}</div>
+        </div>
+        <div class="item">
+            <div>Responsavel</div>
+            <div>
+                {% for service in chip.services %}
+                    <span>{{service}}</span>
+                {% endfor %}
+                
+            </div>
+        </div>
+        <div class="item">
+            <div>Total de chip</div>
+            <div>20</div>
+            <div>Desde</div>
+            <div>{{chip.created_at}}</div>
+        </div>
+        <a href="/chips/{{ chip.id }}/edit" class="button">Editar</a>
+    </section>
+</div>
+
+{% endblock content%}

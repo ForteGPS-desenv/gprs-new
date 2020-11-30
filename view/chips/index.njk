@@ -1,0 +1,28 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<div class="card table-container">
+    <a href="/chips/create">Novo chip</a>
+    <table width="100%">
+        <thead>
+            <tr>
+                <th>ICCD</th>
+                <th>NÚMERO</th>
+                <th>ação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chip in chips%}
+            <tr>
+                <td>
+                {{chip.name}}</td>
+                <td>{{chip.services}}</td>
+                <td><a href="/chips/{{chip.id}}">Ver</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock content%}

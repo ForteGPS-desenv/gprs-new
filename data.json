@@ -1,20 +1,38 @@
 {
+  "chips": [
+    {
+      "id": 1,
+      "avatar_url": "http://tete,com.br",
+      "active": 1506643200000,
+      "name": "199989189",
+      "created_at": 1606758507514,
+      "services": "85981214026"
+    }
+  ],
   "members": [
     {
       "id": 1,
       "avatar_url": "https://teste.com.br",
-      "active": 1603670400000,
-      "name": "ls",
+      "active": 1600992000000,
+      "name": "gba",
       "created_at": 1606494451377,
-      "services": "vanderr"
+      "services": "tales"
     },
     {
       "id": 2,
       "avatar_url": "http://gbarastreamento.com.br",
-      "active": 1588032000000,
-      "name": "gprs",
+      "active": 1525478400000,
+      "name": "ls",
       "created_at": 1606502354988,
       "services": "Vander, GBA, ROnaldo"
+    },
+    {
+      "id": 3,
+      "avatar_url": "http://teste.com.br",
+      "active": 1572220800000,
+      "name": "fortegps",
+      "created_at": 1606742849577,
+      "services": "Apolinario Nobre, Vander Andrade, Mariana Buriti"
     }
   ]
 }

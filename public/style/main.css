@@ -230,6 +230,12 @@ td, th {
     border-bottom: 1px solid #d9d9d9;
 }
 
+th {
+    text-transform: uppercase;
+    color: #777;
+    font-size: 14px;
+}
+
 tbody tr:last-child td {
     border-bottom: none;
 }
@@ -247,5 +253,27 @@ tbody tr td:first-child span {
     background-size: cover;
     border-radius: 50%;
     box-shadow: 3px 1px 6px -4px black;
-    border: 2px solid white;
+    border: 2px solid var(--color-secondary);
+}
+
+tbody tr td:last-child a,
+.table-container > a {
+    background-color: var(--color-secondary);
+    padding: 8px 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--color-neutral);
+    font-size: 12px;
+    border-radius: 4px;
+}
+
+.table-container > a {
+    margin-bottom: 32px;
+    display: inline-block;
+    
+}
+
+.table-container thead tr th:last-child,
+td:last-child {
+    text-align: center;
 }

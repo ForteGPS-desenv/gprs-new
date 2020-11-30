@@ -1,0 +1,76 @@
+<div class="item">
+            <div>Operadora</div>
+            <div>
+                <input 
+                    type="text"
+                    name="operadora"
+                    placeholder="Operadora"
+                    value="{{chip.operadora}}"
+                    >
+            </div>
+        </div>
+        <div class="item">
+            <div>ICCID</div>
+            <div>
+                <input 
+                    type="text"
+                    name="name"
+                    placeholder="Nome do membro"
+                    value="{{chip.name}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>NÚMERO</div>
+            <div>
+                <input 
+                    type="text"
+                    name="name"
+                    placeholder="Nome do membro"
+                    value="{{chip.name}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>Data de ativação</div>
+            <div>
+                <input 
+                    type="date"
+                    name="active"
+                    value="{{chip.active}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>Status</div>
+            <div>
+                <span>
+                    <input 
+                        type="radio"
+                        name="status"
+                        value="1"
+                        {% if chip.status == '1'%}
+                            checked
+                        {% endif%}
+                        >ATIVO
+                </span>
+                <span>
+                    <input 
+                        type="radio"
+                        name="status"
+                        value="0"
+                        {% if chip.status == '0'%}
+                            checked
+                        {% endif%}
+                        >DESATIVO
+                </span>
+            </div>
+        </div>
+        <div class="item">
+            <div>Alocado</div>
+            <div>
+                <select name="local">
+                    <option value="D FORTEGPS">Deposito ForteGPS</option>
+                    <option value="D GBA">Deposito GBA</option>
+                    <option value="D FORTEGPS">Deposito GPRS</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit">Salvar</button>

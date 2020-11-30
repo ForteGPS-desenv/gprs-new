@@ -3,32 +3,31 @@ const data = require('../data.json')
 const { active, date } = require('./utils')
 
 exports.index = function(req, res) {
-    return res.render("members/index", { members: data.members })
+    return res.render("chips/index", { chips: data.chips })
 }
-
 //show
 exports.show =  function(req, res) {
     //req.params
     const { id } = req.params 
 
-    const foundMember = data.members.find(function(member){
-        return member.id == id
+    const foundChip = data.chips.find(function(chip){
+        return chip.id == id
     })
 
-    if(!foundMember) return res.send("Member not found")
+    if(!foundChip) return res.send("chip not found")
 
-    const member = {
-        ...foundMember,
-        active: active(foundMember.active),
-        services:foundMember.services.split(","),
-        created_at: new Intl.DateTimeFormat("pt-BR").format(foundMember.created_at)
+    const chip = {
+        ...foundChip,
+        active: active(foundChip.active),
+        services:foundChip.services.split(","),
+        created_at: new Intl.DateTimeFormat("pt-BR").format(foundChip.created_at)
     }
 
-    return res.render("members/show", {member})
+    return res.render("chips/show", {chip})
 }
-// Get Create
-exports.create =  function(req, res){
-    return res.render('members/create')
+//create get
+exports.create = function(req, res){
+    return res.render('chips/create')
 }
 //Create
 exports.post = function(req, res) {
@@ -44,10 +43,10 @@ exports.post = function(req, res) {
 
     active = Date.parse(active)
     const created_at = Date.now()
-    const id = Number(data.members.length + 1)
+    const id = Number(data.chips.length + 1)
 
 
-    data.members.push({
+    data.chips.push({
         id,
         avatar_url,
         active,
@@ -59,7 +58,7 @@ exports.post = function(req, res) {
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
         if (err) return res.send("Write file error!!")
         
-        return res.redirect("/members")
+        return res.redirect("/chips")
     })
 }
 //Edit
@@ -67,60 +66,60 @@ exports.edit = function(req, res){
 
     const { id } = req.params 
 
-    const foundMember = data.members.find(function(member){
-        return member.id == id
+    const foundChip = data.chips.find(function(chip){
+        return chip.id == id
     })
 
-    if(!foundMember) return res.send("Member not found")
+    if(!foundChip) return res.send("chip not found")
 
-    const member = {
-        ...foundMember,
-        active: date(foundMember.active)
+    const chip = {
+        ...foundChip,
+        active: date(foundChip.active)
     }
-    return res.render('members/edit', {member})
+    return res.render('chips/edit', {chip})
 }
 //Put
 exports.put = function(req, res) {
     const { id } = req.body 
     let index = 0
     
-    const foundMember = data.members.find(function(member, foundIndex){
-        if ( id == member.id) {
+    const foundChip = data.chips.find(function(chip, foundIndex){
+        if ( id == chip.id) {
             index = foundIndex
             return true
         }
     })
 
-    if(!foundMember) return res.send("Member not found")
+    if(!foundChip) return res.send("chip not found")
 
-    const member = {
-        ...foundMember,
+    const chip = {
+        ...foundChip,
         ...req.body,
         active: Date.parse(req.body.active),
         id: Number(req.body.id)
     }
 
-    data.members[index] = member
+    data.chips[index] = chip
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
         if(err) return res.send("Write error!!!")
 
-        return res.redirect(`/members/${id}`)
+        return res.redirect(`/chips/${id}`)
     })
 }
 //Delete
 exports.delete = function(req, res){
     const { id } = req.body
 
-    const filteredMembers = data.members.filter(function(member){
-        return member.id != id
+    const filteredChips = data.chips.filter(function(chip){
+        return chip.id != id
     })
 
-    data.members = filteredMembers
+    data.chips = filteredChips
 
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
         if (err) return res.send("Write file error!")
 
-        return res.redirect("/members")
+        return res.redirect("/chips")
     })
 }
