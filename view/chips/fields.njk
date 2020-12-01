@@ -14,19 +14,19 @@
             <div>
                 <input 
                     type="text"
-                    name="name"
+                    name="iccid"
                     placeholder="Nome do membro"
-                    value="{{chip.name}}">
+                    value="{{chip.iccid}}">
             </div>
         </div>
         <div class="item">
-            <div>NÚMERO</div>
+            <div>LINHA</div>
             <div>
                 <input 
                     type="text"
-                    name="name"
+                    name="number"
                     placeholder="Nome do membro"
-                    value="{{chip.name}}">
+                    value="{{chip.number}}">
             </div>
         </div>
         <div class="item">
@@ -66,11 +66,31 @@
         <div class="item">
             <div>Alocado</div>
             <div>
-                <select name="local">
+                <select name="location">
                     <option value="D FORTEGPS">Deposito ForteGPS</option>
                     <option value="D GBA">Deposito GBA</option>
                     <option value="D FORTEGPS">Deposito GPRS</option>
                 </select>
+            </div>
+        </div>
+        <div class="item">
+            <div>Valor real </div>
+            <div>
+                <input 
+                    type="text"
+                    name="value_true"
+                    placeholder="Valor unitario padrão do chip"
+                    value="{{chip.value_true}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>Valor</div>
+            <div>
+                <input 
+                    type="text"
+                    name="value"
+                    placeholder="Valor cobrado pelo o chip"
+                    value="{{chip.value}}">
             </div>
         </div>
         <button type="submit">Salvar</button>

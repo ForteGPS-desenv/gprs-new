@@ -5,25 +5,22 @@
 <div class="card">
   <section 
         class="avatar" 
-        style="background: url(../assets/{{chip.name}}.jpg) no-repeat center center; background-size: cover;"
+        style="background: url(../assets/simcard.jpg) no-repeat center center; background-size: cover;"
     ></section>
     <section class="details">
         <h3> Detalhes </h3>
         <div class="item">
-            <div>Membro</div>
-            <div>{{chip.name}}</div>
+            <div>linha</div>
+            <div>{{chip.number}}</div>
         </div>
         <div class="item">
             <div>Tempo de ativação</div>
             <div>{{chip.active}}</div>
         </div>
         <div class="item">
-            <div>Responsavel</div>
+            <div>Alocado</div>
             <div>
-                {% for service in chip.services %}
-                    <span>{{service}}</span>
-                {% endfor %}
-                
+                {{chip.location}}                
             </div>
         </div>
         <div class="item">

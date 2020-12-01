@@ -2,11 +2,15 @@
   "chips": [
     {
       "id": 1,
-      "avatar_url": "http://tete,com.br",
-      "active": 1506643200000,
-      "name": "199989189",
-      "created_at": 1606758507514,
-      "services": "85981214026"
+      "operadora": "ALGAR",
+      "active": 1593561600000,
+      "iccid": "787878",
+      "number": "85981214026",
+      "location": "D GBA",
+      "created_at": 1606781996486,
+      "status": "1",
+      "value_true": "6",
+      "value": "7"
     }
   ],
   "members": [

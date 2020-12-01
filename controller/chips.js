@@ -1,6 +1,6 @@
 const fs = require('fs')
 const data = require('../data.json')
-const { active, date } = require('./utils')
+const { date } = require('./utils')
 
 exports.index = function(req, res) {
     return res.render("chips/index", { chips: data.chips })
@@ -18,8 +18,7 @@ exports.show =  function(req, res) {
 
     const chip = {
         ...foundChip,
-        active: active(foundChip.active),
-        services:foundChip.services.split(","),
+        active: date(foundChip.active).activeDay,
         created_at: new Intl.DateTimeFormat("pt-BR").format(foundChip.created_at)
     }
 
@@ -38,21 +37,37 @@ exports.post = function(req, res) {
         }
     }
 
-    let { avatar_url, name, active, services } = req.body
+    let { 
+        operadora, 
+        iccid, 
+        active, 
+        status,
+        location,
+        number,
+        value_true,
+        value_payment } = req.body
 
+    const created_at = Date.now()
 
     active = Date.parse(active)
-    const created_at = Date.now()
-    const id = Number(data.chips.length + 1)
-
+    
+    const id = 1
+    const lastChip = data.chips[data.chips.length - 1]
+    if (lastChip) {
+        id = lastChip.id + 1
+    }
 
     data.chips.push({
         id,
-        avatar_url,
+        operadora,
         active,
-        name,
+        iccid,
+        number,
+        location,
         created_at,
-        services
+        status,
+        value_true,
+        value_payment
     })
     
     fs.writeFile("data.json", JSON.stringify(data, null, 2), function(err){
@@ -74,7 +89,7 @@ exports.edit = function(req, res){
 
     const chip = {
         ...foundChip,
-        active: date(foundChip.active)
+        active: date(foundChip.active).iso
     }
     return res.render('chips/edit', {chip})
 }

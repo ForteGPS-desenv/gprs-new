@@ -76,8 +76,8 @@ header {
 /* => CARD <=> CARD */
 .card {
     background-color: white;
-    width: 850px;
-    height: 500px;
+    width: 50%;
+    height: 100%;
 
     margin: 45px auto;
     display: grid;
@@ -168,7 +168,7 @@ header {
 
 /* FORM */
 
-input {
+input, select {
     width: 100%;
     outline: none;
     color: #444;
