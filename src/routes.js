@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
-const members = require('./controller/members')
-const chips = require('./controller/chips')
+const members = require('./app/controller/members')
+const chips = require('./app/controller/chips')
 
 router.get('/', function (req, res) {
     return res.redirect('/members')
