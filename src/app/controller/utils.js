@@ -26,6 +26,8 @@ module.exports = {
             month,
             year,
             iso: `${year}-${month}-${day}`,
-            activeDay: `${day}/${month}`}
+            activeDay: `${day}/${month}`,
+            format: `${day}/${month}/${year}`
+        }
     }
 }

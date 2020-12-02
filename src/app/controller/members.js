@@ -3,7 +3,7 @@ const { active, date } = require('./utils')
 
 
 module.exports = {
-    index(req, res) {
+    index(req, res){
         Member.all(function(members) {
             return res.render("members/index", {members})
         })
@@ -11,7 +11,7 @@ module.exports = {
     create(req, res){
         return res.render('members/create')
     },
-    post(req, res) {
+    post(req, res){
         
         const keys = Object.keys(req.body)
         
@@ -27,23 +27,36 @@ module.exports = {
 
         
     },
-    show(req, res) {
-      
+    show(req, res){
+        Member.find(req.params.id, function(member) {
+            if(!member) return res.send("Ei, membro not found OK?")
+        member.created_at = date(member.created_at).format
+        
+        return res.render("members/show", { member })
+        })
     },
     edit(req, res){
-    
-        return console.log("rota edit")
+
+        Member.find(req.params.id, function(member) {
+            if(!member) return res.send("Ei, membro not found OK?")
+            
+            member.vencimento = date(member.created_at).format
+            
+            return res.render("members/edit", { member })
+        })
 
     },
-    put(req, res) {
+    put(req, res){
         const keys = Object.keys(req.body)
         for(key of keys) {
             if (req.body[key] == ""){
                 return res.send('Eiiiii! Não foi preenchido todos os campos')
             }
         }
-        return console.log("rota put")
 
+        Member.update(req.body, function() {
+            return res.redirect(`/members/${req.body.id}`)
+        })
     },
     delete(req, res){
         return console.log("rota delete")
