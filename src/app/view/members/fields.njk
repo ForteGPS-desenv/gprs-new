@@ -1,31 +1,32 @@
 <div class="item">
-            <div>Avatar URL</div>
+            <div>Razão Social</div>
             <div>
                 <input 
-                    type="url"
-                    name="avatar_url"
-                    placeholder="http://"
-                    value="{{member.avatar_url}}"
+                    type="text"
+                    name="name_social"
+                    placeholder="Razão Social"
+                    value="{{member.name_social}}"
                     >
             </div>
         </div>
         <div class="item">
-            <div>Membro</div>
+            <div>Nome Fantasia</div>
             <div>
                 <input 
                     type="text"
                     name="name"
-                    placeholder="Nome do membro"
+                    placeholder="Nome fantasia"
                     value="{{member.name}}">
             </div>
         </div>
         <div class="item">
-            <div>Data de ativação</div>
+            <div>CNPJ</div>
             <div>
                 <input 
-                    type="date"
-                    name="active"
-                    value="{{member.active}}">
+                    type="text"
+                    name="cnpj"
+                    placeholder="CNPJ"
+                    value="{{member.cnpj}}">
             </div>
         </div>
         <div class="item">
@@ -33,9 +34,49 @@
             <div>
                 <input 
                     type="text"
-                    name="services"
-                    placeholder="Separe os responsaveis por vígula"
-                    value="{{member.services}}">
+                    name="name_contato"
+                    placeholder="Nome do contato"
+                    value="{{member.name}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>Endereço</div>
+            <div>
+                <input 
+                    type="text"
+                    name="address"
+                    placeholder="Endereço"
+                    value="{{member.address}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>email</div>
+            <div>
+                <input 
+                    type="text"
+                    name="email"
+                    placeholder="email"
+                    value="{{member.email}}">
+            </div>
+        
+        </div>
+        <div class="item">
+            <div>Vencimento</div>
+            <div>
+                <input 
+                    type="date"
+                    name="vencimento"
+                    value="{{member.vencimento}}">
+            </div>
+        </div>
+        <div class="item">
+            <div>Responsavel</div>
+            <div>
+                <input 
+                    type="text"
+                    name="phone"
+                    placeholder="coloque o DDD"
+                    value="{{member.phone}}">
             </div>
         </div>
         <button type="submit">Salvar</button>
