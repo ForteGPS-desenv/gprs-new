@@ -1,5 +1,5 @@
 module.exports = {
-    active: function(timestamp) {
+    active(timestamp) {
         const today = new Date()
         const activeDate = new Date(timestamp)
 
@@ -14,7 +14,7 @@ module.exports = {
 
     return active
     },
-    date: function(timestamp) {
+    date(timestamp) {
         const date = new Date(timestamp)
 
         const year = date.getUTCFullYear()
