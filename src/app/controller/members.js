@@ -30,9 +30,10 @@ module.exports = {
     show(req, res){
         Member.find(req.params.id, function(member) {
             if(!member) return res.send("Ei, membro not found OK?")
-        member.created_at = date(member.created_at).format
         
-        return res.render("members/show", { member })
+            member.created_at = date(member.created_at).format
+        
+            return res.render("members/show", { member })
         })
     },
     edit(req, res){
@@ -40,7 +41,7 @@ module.exports = {
         Member.find(req.params.id, function(member) {
             if(!member) return res.send("Ei, membro not found OK?")
             
-            member.vencimento = date(member.created_at).format
+            member.vencimento = date(member.created_at).iso
             
             return res.render("members/edit", { member })
         })
@@ -59,7 +60,9 @@ module.exports = {
         })
     },
     delete(req, res){
-        return console.log("rota delete")
+        Member.delete(req.body.id, function() {
+            return res.redirect(`/members`)
+        })
 
     }
 }

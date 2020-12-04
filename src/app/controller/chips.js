@@ -1,42 +1,69 @@
+const Chip = require('../model/Chip')
 const { active, date } = require('./utils')
 
+
+
 module.exports = {
-    index(req, res) {
-        return res.render("chips/index")
+    index(req, res){
+        Chip.all(function(chips) {
+            return res.render("chips/index", {chips})
+        })
     },
     create(req, res){
         return res.render('chips/create')
     },
-    post(req, res) {
+    post(req, res){
+        
         const keys = Object.keys(req.body)
+        
         for(key of keys) {
             if (req.body[key] == ""){
                 return res.send('Eiiiii! Não foi preenchido todos os campos')
             }
         }
+
+        Chip.create(req.body, function(chips) {
+            return res.redirect(`/chips/${chips.id}`)
+        })
+
         
-        return console.log("rota post")
     },
-    show(req, res) {
-       return console.log("rota show")
+    show(req, res){
+        Chip.find(req.params.id, function(chip) {
+            if(!chip) return res.send("Ei, membro not found OK?")
+        
+            chip.created_at = date(chip.created_at).format
+        
+            return res.render("chips/show", { chip })
+        })
     },
     edit(req, res){
-    
-        return console.log("rota edit")
+
+        Chip.find(req.params.id, function(chip) {
+            if(!chip) return res.send("Ei, membro not found OK?")
+            
+            chip.vencimento = date(chip.created_at).iso
+            
+            return res.render("chips/edit", { chip })
+        })
 
     },
-    put(req, res) {
+    put(req, res){
         const keys = Object.keys(req.body)
         for(key of keys) {
             if (req.body[key] == ""){
                 return res.send('Eiiiii! Não foi preenchido todos os campos')
             }
         }
-        return console.log("rota put")
 
+        Chip.update(req.body, function() {
+            return res.redirect(`/chips/${req.body.id}`)
+        })
     },
     delete(req, res){
-        return console.log("rota delete")
+        Chip.delete(req.body.id, function() {
+            return res.redirect(`/chips`)
+        })
 
     }
 }

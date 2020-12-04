@@ -5,35 +5,35 @@ const db = require('../config/db')
 module.exports = {
     all(callback){
         
-        db.query(`SELECT * FROM members ORDER BY created_at ASC`, function(err, results){
+        db.query(`SELECT * FROM chips`, function(err, results){
             if(err) throw `Database Error ${err}`
             callback(results.rows)
         })
     },
     create(data, callback){
         const query = `
-            INSERT INTO members (
-                name_social,
-                name,
-                cnpj,
-                address,
-                name_contato,
-                email,
-                phone,
-                vencimento,
+            INSERT INTO chips (
+                operadora,
+                iccid,
+                number,
+                active,
+                status,
+                location,
+                value_true,
+                value,
                 created_at
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             RETURNING id
         `
         const values = [
-            data.name_social,
-            data.name,
-            data.cnpj,
-            data.address,
-            data.name_contato,
-            data.email,
-            data.phone,
-            date(data.vencimento).iso,
+            data.operadora,
+            data.iccid,
+            data.number,
+            date(data.active).iso,
+            data.status,
+            data.location,
+            data.value_true,
+            data.value,
             date(Date.now()).iso
 
         ]
@@ -47,7 +47,7 @@ module.exports = {
     find(id, callback){
         db.query(`
         SELECT * 
-        FROM members 
+        FROM chips 
         WHERE id = $1`, [id], function(err, results) {
             if(err) throw `Database Error ${err}`
             callback(results.rows[0])
@@ -55,27 +55,27 @@ module.exports = {
     },
     update(data, callback){
         const query = `
-            UPDATE members SET
-                name_social = ($1),
-                name = ($2),
-                cnpj = ($3),
-                address = ($4),
-                name_contato = ($5),
-                email = ($6),
-                phone = ($7),
-                vencimento = ($8)
+            UPDATE chips SET
+                operadora = ($1),
+                iccid = ($2),
+                number = ($3),
+                status = ($4),
+                location = ($5),
+                value_true = ($6),
+                value = ($7),
+                active = ($8)
             WHERE id = ($9)
        ` 
     
         const values = [
-            data.name_social,
-            data.name,
-            data.cnpj, 
-            data.address,
-            data.name_contato,
-            data.email,
-            data.phone,
-            date(data.vencimento).iso,
+            data.operadora,
+            data.iccid,
+            data.number, 
+            data.status,
+            data.location,
+            data.value_true,
+            data.value,
+            date(data.active).iso,
             data.id
         ]
 
@@ -88,7 +88,7 @@ module.exports = {
     delete(id, callback){
         db.query(`
         DELETE 
-        FROM members 
+        FROM chips 
         WHERE id = $1`, [id], function(err, results) {
             if(err) throw `Database Error ${err}`
             callback()
