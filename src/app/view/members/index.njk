@@ -9,6 +9,7 @@
             <tr>
                 <th>Logo</th>
                 <th>Razão Social</th>
+                <th>Chips</th>
                 <th>Ação</th>
             </tr>
         </thead>
@@ -24,6 +25,7 @@
                     "></span>
                 </td>
                 <td>{{member.name_contato}}</td>
+                <td>{{member.total_iot}} </td>
                 <td><a href="/members/{{member.id}}">Ver</a></td>
             </tr>
             {% endfor %}

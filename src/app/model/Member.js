@@ -5,7 +5,13 @@ const db = require('../config/db')
 module.exports = {
     all(callback){
         
-        db.query(`SELECT * FROM members ORDER BY created_at ASC`, function(err, results){
+        db.query(`
+        SELECT members.*, count(chips) AS total_iot
+        FROM members
+        LEFT JOIN chips ON (chips.members_id =  members.id)
+        GROUP BY members.id
+        ORDER BY total_iot
+        `, function(err, results){
             if(err) throw `Database Error ${err}`
             callback(results.rows)
         })

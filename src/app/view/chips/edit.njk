@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="card" >
+<div class="card">
     <section 
         class="avatar" 
         style="background: url(../assets/simcard.jpg) no-repeat center center; background-size: cover;"
@@ -20,7 +20,7 @@
                 value={{chip.id}}>
         </form>
         <form id="form-delete" action="/chips?_method=DELETE" method="post">
-            <input type="hidden" name="id" value={{memeber.id}}>
+            <input type="hidden" name="id" value={{chip.id}}>
             <button type="submit"> Deletar </button>
         </form>
     </section>
