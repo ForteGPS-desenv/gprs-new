@@ -54,6 +54,20 @@ module.exports = {
             callback(results.rows[0])
         })
     },
+    findBy(filter, callback){
+        db.query(`
+        SELECT chips.*
+        FROM chips
+        INNER JOIN members ON (members.id = chips.members_id)
+        WHERE number ILIKE '%${filter}%'
+        GROUP BY chips.id
+        ORDER BY chips.id DESC
+        `, function(err, results){
+            if(err) throw `Database Error! ${err}`
+
+            callback(results.rows)
+        })
+    },
     update(data, callback){
         const query = `
             UPDATE chips SET

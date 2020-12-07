@@ -5,9 +5,18 @@ const { active, date } = require('./utils')
 
 module.exports = {
     index(req, res){
-        Chip.all(function(chips) {
-            return res.render("chips/index", {chips})
-        })
+        const { filter } = req.query
+
+        if( filter ) {
+            Chip.findBy(filter, function(chips){
+                return res.render("chips/index", {chips})
+            })
+        } else {
+            Chip.all(function(chips) {
+                return res.render("chips/index", {chips})
+            })
+        }
+
     },
     create(req, res){
         Chip.membersSelectOptions(function(options) {
