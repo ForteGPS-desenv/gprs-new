@@ -59,6 +59,20 @@ module.exports = {
             callback(results.rows[0])
         })
     },
+    findBy(filter, callback){
+        db.query(`
+        SELECT members.*,  count(members) AS total_iot
+        FROM members
+        LEFT JOIN chips ON (members.id = chips.members_id)
+        WHERE members.name_social ILIKE '%${filter}%' 
+        GROUP BY members.id
+        ORDER BY total_iot DESC
+        `, function(err, results){
+            if(err) throw `Database Error! ${err}`
+
+            callback(results.rows)
+        })
+    },
     update(data, callback){
         const query = `
             UPDATE members SET

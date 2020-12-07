@@ -66,10 +66,12 @@
         <div class="item">
             <div>Alocado</div>
             <div>
-                <select name="location">
-                    <option value="D FORTEGPS">Deposito ForteGPS</option>
-                    <option value="D GBA">Deposito GBA</option>
-                    <option value="D FORTEGPS">Deposito GPRS</option>
+                <select name="member">
+                    {% for member in memberOptions%}
+                        <option value="{{member.id}}" {% if chip.members_id == member.id %} selected{% endif %}>
+                            {{member.name_social}}
+                        </option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

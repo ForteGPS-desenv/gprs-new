@@ -4,9 +4,17 @@ const { active, date } = require('./utils')
 
 module.exports = {
     index(req, res){
-        Member.all(function(members) {
-            return res.render("members/index", {members})
-        })
+        const { filter } = req.query
+
+        if ( filter ) {
+            Member.findBy(filter, function(members){
+                return res.render("members/index", { members })
+            })
+        } else {
+            Member.all(function(members) {
+                return res.render("members/index", {members})
+            })
+        }
     },
     create(req, res){
         return res.render('members/create')

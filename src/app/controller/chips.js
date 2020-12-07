@@ -10,7 +10,9 @@ module.exports = {
         })
     },
     create(req, res){
-        return res.render('chips/create')
+        Chip.membersSelectOptions(function(options) {
+            return res.render('chips/create', {memberOptions: options})
+        })
     },
     post(req, res){
         
@@ -44,7 +46,9 @@ module.exports = {
             
             chip.vencimento = date(chip.created_at).iso
             
-            return res.render("chips/edit", { chip })
+            Chip.membersSelectOptions(function(options) {
+                return res.render('chips/edit', {chip, memberOptions: options})
+            })
         })
 
     },

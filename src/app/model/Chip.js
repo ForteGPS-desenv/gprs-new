@@ -18,7 +18,7 @@ module.exports = {
                 number,
                 active,
                 status,
-                location,
+                members_id,
                 value_true,
                 value,
                 created_at
@@ -31,7 +31,7 @@ module.exports = {
             data.number,
             date(data.active).iso,
             data.status,
-            data.location,
+            data.member,
             data.value_true,
             data.value,
             date(Date.now()).iso
@@ -46,9 +46,10 @@ module.exports = {
     },
     find(id, callback){
         db.query(`
-        SELECT * 
+        SELECT chips.*, members.name_social AS member_name
         FROM chips 
-        WHERE id = $1`, [id], function(err, results) {
+        LEFT JOIN members ON (chips.members_id = members.id)
+        WHERE chips.id = $1`, [id], function(err, results) {
             if(err) throw `Database Error ${err}`
             callback(results.rows[0])
         })
@@ -60,7 +61,7 @@ module.exports = {
                 iccid = ($2),
                 number = ($3),
                 status = ($4),
-                location = ($5),
+                members_id = ($5),
                 value_true = ($6),
                 value = ($7),
                 active = ($8)
@@ -72,7 +73,7 @@ module.exports = {
             data.iccid,
             data.number, 
             data.status,
-            data.location,
+            data.member,
             data.value_true,
             data.value,
             date(data.active).iso,
@@ -92,6 +93,13 @@ module.exports = {
         WHERE id = $1`, [id], function(err, results) {
             if(err) throw `Database Error ${err}`
             callback()
+        })
+    },
+    membersSelectOptions(callback) {
+        db.query(`SELECT name_social, id FROM members`, function(err, results){
+            if (err) throw 'Database error!'
+
+            callback(results.rows)
         })
     }
 }
