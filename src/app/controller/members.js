@@ -8,7 +8,7 @@ module.exports = {
 
         if ( filter ) {
             Member.findBy(filter, function(members){
-                return res.render("members/index", { members })
+                return res.render("members/index", { members, filter })
             })
         } else {
             Member.all(function(members) {
@@ -39,6 +39,7 @@ module.exports = {
         Member.find(req.params.id, function(member) {
             if(!member) return res.send("Ei, membro not found OK?")
         
+            member.vencimento = date(member.vencimento).day
             member.created_at = date(member.created_at).format
         
             return res.render("members/show", { member })
@@ -49,7 +50,7 @@ module.exports = {
         Member.find(req.params.id, function(member) {
             if(!member) return res.send("Ei, membro not found OK?")
             
-            member.vencimento = date(member.created_at).iso
+            member.vencimento = date(member.vencimento).iso
             
             return res.render("members/edit", { member })
         })

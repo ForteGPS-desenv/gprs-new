@@ -14,21 +14,22 @@
             <div>{{member.name}}</div>
         </div>
         <div class="item">
-            <div>Tempo de ativação</div>
-            <div>{{member.active}}</div>
+            <div>Dia de vencimento</div>
+            <div>{{member.vencimento}}</div>
         </div>
         <div class="item">
             <div>Responsavel</div>
             <div>
-                {% for service in member.services %}
+                {{member.name_contato}}
+                <!--{% for service in member.services %}
                     <span>{{service}}</span>
-                {% endfor %}
+                {% endfor %} -->
                 
             </div>
         </div>
         <div class="item">
             <div>Total de chip</div>
-            <div>20</div>
+            <div>{{member.total_iot}}</div>
             <div>Desde</div>
             <div>{{member.created_at}}</div>
         </div>

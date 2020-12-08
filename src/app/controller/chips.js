@@ -9,7 +9,7 @@ module.exports = {
 
         if( filter ) {
             Chip.findBy(filter, function(chips){
-                return res.render("chips/index", {chips})
+                return res.render("chips/index", {chips, filter})
             })
         } else {
             Chip.all(function(chips) {
@@ -44,6 +44,7 @@ module.exports = {
             if(!chip) return res.send("Ei, membro not found OK?")
         
             chip.created_at = date(chip.created_at).format
+            chip.active =  date(chip.active).format
         
             return res.render("chips/show", { chip })
         })

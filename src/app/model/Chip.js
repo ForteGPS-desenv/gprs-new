@@ -5,7 +5,11 @@ const db = require('../config/db')
 module.exports = {
     all(callback){
         
-        db.query(`SELECT * FROM chips`, function(err, results){
+        db.query(`
+        SELECT chips.*, members.name_social AS member_name 
+        FROM chips
+        LEFT JOIN members ON (chips.members_id = members.id)
+        `, function(err, results){
             if(err) throw `Database Error ${err}`
             callback(results.rows)
         })
@@ -60,6 +64,8 @@ module.exports = {
         FROM chips
         INNER JOIN members ON (members.id = chips.members_id)
         WHERE number ILIKE '%${filter}%'
+        OR operadora ILIKE '%${filter}%'
+        OR iccid ILIKE '%${filter}%'
         GROUP BY chips.id
         ORDER BY chips.id DESC
         `, function(err, results){

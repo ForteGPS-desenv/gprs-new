@@ -10,7 +10,7 @@ module.exports = {
         FROM members
         LEFT JOIN chips ON (chips.members_id =  members.id)
         GROUP BY members.id
-        ORDER BY total_iot
+        ORDER BY total_iot DESC
         `, function(err, results){
             if(err) throw `Database Error ${err}`
             callback(results.rows)
@@ -52,19 +52,22 @@ module.exports = {
     },
     find(id, callback){
         db.query(`
-        SELECT * 
+        SELECT members.*, count(chips) AS total_iot 
         FROM members 
-        WHERE id = $1`, [id], function(err, results) {
+        LEFT JOIN chips ON (members.id = chips.members_id)
+        WHERE members.id = $1
+        GROUP BY members.id`, [id], function(err, results) {
             if(err) throw `Database Error ${err}`
             callback(results.rows[0])
         })
     },
     findBy(filter, callback){
         db.query(`
-        SELECT members.*,  count(members) AS total_iot
+        SELECT members.*,  count(chips) AS total_iot
         FROM members
         LEFT JOIN chips ON (members.id = chips.members_id)
-        WHERE members.name_social ILIKE '%${filter}%' 
+        WHERE members.name_social ILIKE '%${filter}%'
+        OR members.name_contato ILIKE '%${filter}%'
         GROUP BY members.id
         ORDER BY total_iot DESC
         `, function(err, results){

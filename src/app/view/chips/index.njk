@@ -11,6 +11,7 @@
             type="text"
             name="filter"
             placeholder="Filtrar por linha"
+            value="{{filter}}"
             >
             <button type="submit">Filtrar</button>
 
@@ -22,6 +23,7 @@
             <tr>
                 <th>ICCD</th>
                 <th>NÚMERO</th>
+                <th>Usuario</th>
                 <th>ação</th>
             </tr>
         </thead>
@@ -31,6 +33,7 @@
                 <td>
                 {{chip.iccid}}</td>
                 <td>{{chip.number}}</td>
+                <td>{{chip.member_name}}</td>
                 <td><a href="/chips/{{chip.id}}">Ver</a></td>
             </tr>
             {% endfor %}
