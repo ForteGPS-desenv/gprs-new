@@ -1,5 +1,5 @@
 const Member = require('../model/Member')
-const { active, date } = require('./utils')
+const { active, date, formatPrice } = require('./utils')
 
 
 module.exports = {
@@ -12,6 +12,7 @@ module.exports = {
             })
         } else {
             Member.all(function(members) {
+
                 return res.render("members/index", {members})
             })
         }

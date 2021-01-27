@@ -2,10 +2,12 @@ const express = require('express')
 const router = express.Router()
 const members = require('./app/controller/members')
 const chips = require('./app/controller/chips')
+const home = require('./app/controller/home')
 
-router.get('/', function (req, res) {
-    return res.redirect('/members')
-})
+
+router.get('/', home.index)
+router.get('/apresetation',(req, res) => {
+    return res.render('Pagina ainda não criada!')})
 
 router.get('/members', members.index)
 router.get('/members/create',members.create)

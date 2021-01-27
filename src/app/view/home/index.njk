@@ -1,0 +1,61 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<main>
+    <div class="cards-home">
+        
+        {% for homes in home %}
+            <div class="card-home-single">
+                <div>
+                    <h1>{{homes.valor_total}}</h1>
+                    <span>Total a receber</span>
+                </div>
+                <div>
+                    <span class="las la-money-check-alt">
+
+                    </span>
+                </div>
+            </div>
+        <div class="card-home-single">
+            <div>
+                <h1>{{homes.total_membros}}</h1>
+                <span>Total de Clientes</span>
+            </div>
+            <div>
+                <span class="las la-user-tie">
+
+                </span>
+            </div>
+        </div>
+        <div class="card-home-single">
+            <div>
+                <h1>0</h1>
+                <span>Total de Chip Inativos</span>
+            </div>
+            <div>
+                <span class="las la-plug">
+
+                </span>
+            </div>
+        </div>
+        <a href="/chips">
+            <div class="card-home-single">
+                <div>
+                    <h1>{{homes.total_iot}}</h1>
+                    <span>Total de Chip ativos</span>
+                </div>
+                <div>
+                    <span class="las la-sim-card">
+
+                    </span>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+
+    </div>
+</main>
+        
+
+{% endblock content%}

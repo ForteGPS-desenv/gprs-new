@@ -6,7 +6,7 @@ module.exports = {
     all(callback){
         
         db.query(`
-        SELECT members.*, count(chips) AS total_iot
+        SELECT members.*, count(chips) AS total_iot, SUM(chips.value_true) AS valor_total
         FROM members
         LEFT JOIN chips ON (chips.members_id =  members.id)
         GROUP BY members.id

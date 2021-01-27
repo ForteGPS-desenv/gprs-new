@@ -29,6 +29,9 @@ module.exports = {
             ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
             RETURNING id
         `
+        data.value_true = data.value_true.replace(/\D/g, "")
+        data.value = data.value.replace(/\D/g, "")
+
         const values = [
             data.operadora,
             data.iccid,

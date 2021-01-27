@@ -74,6 +74,47 @@ header {
 }
 
 /* => CARD <=> CARD */
+
+/*HOME*/
+main {
+    margin-top: 85px;
+    padding: 2rem 1.5rem;
+    min-height: calc(100vh);
+}
+
+.cards-home {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: -1rem;
+}
+.card-home-single {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 2px;
+}
+
+.card-home-single div:last-child span {
+    color: var(--color-primary);
+    font-size: 3rem;
+}
+
+.card-home-single div:first-child span {
+    color: var(--color-secondary)
+}
+.card-home-single:last-child {
+    background: var(--color-secondary);
+}
+
+.card-home-single:last-child h1,
+.card-home-single:last-child div:first-child span,
+.card-home-single:last-child div:last-child span{
+    color: #fff;
+}
+
+/* => CARD <=> CARD */
 .card {
     background-color: white;
     width: 50%;

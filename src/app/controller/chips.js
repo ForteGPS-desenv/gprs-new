@@ -13,6 +13,7 @@ module.exports = {
             })
         } else {
             Chip.all(function(chips) {
+                console.log(chips.member_name)
                 return res.render("chips/index", {chips})
             })
         }
